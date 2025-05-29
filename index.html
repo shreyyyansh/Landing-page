@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jobs | Job Search | India's Job Portal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Martel+Sans:wght@600&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        /* NAVIGATION */
+        .main {
+            background: linear-gradient(135deg, rgba(0,0,0,0.7), rgba(0,0,0,0.5)), 
+                        linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            position: relative;
+            min-height: 100vh;
+        }
+
+        nav {
+            max-width: 90vw;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+            position: relative;
+            z-index: 100;
+        }
+
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .hamburger {
+            flex-direction: column;
+            cursor: pointer;
+            padding: 0.5rem;
+            z-index: 1001;
+        }
+
+        .bar {
+            width: 25px;
+            height: 3px;
+            background-color: white;
+            margin: 3px 0;
+            transition: 0.3s;
+            border-radius: 2px;
+        }
+
+        .hamburger.active .bar:nth-child(1) {
+            transform: rotate(-45deg) translate(-5px, 6px);
+        }
+
+        .hamburger.active .bar:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active .bar:nth-child(3) {
+            transform: rotate(45deg) translate(-5px, -6px);
+        }
+
+        .logo {
+            width: 120px;
+            height: auto;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .btn {
+            padding: 0.5rem 1rem;
+            border: 2px solid white;
+            background: transparent;
+            color: white;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .btn:hover {
+            background: white;
+            color: #667eea;
+            transform: translateY(-2px);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            background: rgba(255,255,255,0.1);
+        }
+
+        /* HERO SECTION */
+        .hero {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            padding: 4rem 2rem;
+            gap: 2rem;
+        }
+
+        .hero h1 {
+            font-family: 'Martel Sans', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            opacity: 0.9;
+            margin-bottom: 1rem;
+        }
+
+        .search-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+            max-width: 900px;
+            width: 100%;
+        }
+
+        .search-input {
+            flex: 1;
+            min-width: 200px;
+            padding: 1rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+        }
+
+        .search-input:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(255,255,255,0.3);
+        }
+
+        .search-btn {
+            padding: 1rem 2rem;
+            background: #ff4757;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            min-width: 150px;
+        }
+
+        .search-btn:hover {
+            background: #ff3742;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(255,71,87,0.3);
+        }
+
+        .separation {
+            height: 8px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+        }
+
+        /* QUICK SEARCH SECTION */
+        .quick-search {
+            background: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .quick-search h2 {
+            font-size: 2.5rem;
+            color: #333;
+            margin-bottom: 2rem;
+        }
+
+        .quick-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .quick-btn {
+            text-decoration: none;
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .quick-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(102,126,234,0.3);
+            background: linear-gradient(135deg, #5a67d8, #6b46c1);
+        }
+
+        /* FEATURED JOBS SECTION */
+        .featured-jobs {
+            background: #f8f9fa;
+            padding: 4rem 2rem;
+        }
+
+        .featured-jobs h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #333;
+            margin-bottom: 3rem;
+        }
+
+        .jobs-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .jobs-track {
+            display: flex;
+            gap: 2rem;
+            transition: transform 0.6s ease-in-out;
+            padding: 1rem 0;
+        }
+
+        .job-card {
+            flex: 0 0 350px;
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            border: 1px solid #e2e8f0;
+        }
+
+        .job-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 16px 40px rgba(0,0,0,0.15);
+        }
+
+        .job-badge {
+            position: absolute;
+            top: -8px;
+            right: 1rem;
+            background: linear-gradient(135deg, #ffd700, #ffed4e);
+            color: #333;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            box-shadow: 0 4px 12px rgba(255,215,0,0.3);
+        }
+
+        .job-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #2d3748;
+            margin: 1rem 0 0.5rem 0;
+        }
+
+        .company-name {
+            color: #667eea;
+            font-weight: 500;
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+
+        .job-details {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            margin: 1.5rem 0;
+            color: #4a5568;
+        }
+
+        .job-detail {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        .apply-btn {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+        }
+
+        .apply-btn:hover {
+            background: linear-gradient(135deg, #5a67d8, #6b46c1);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(102,126,234,0.3);
+        }
+
+        /* FAQ SECTION */
+        .faq {
+            background: #2d3748;
+            color: white;
+            padding: 4rem 2rem;
+        }
+
+        .faq h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: #4a5568;
+            margin: 1rem 0;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .faq-question {
+            padding: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        .faq-question:hover {
+            background: #718096;
+        }
+
+        .faq-icon {
+            width: 24px;
+            height: 24px;
+            transition: transform 0.3s ease;
+        }
+
+        /* FOOTER */
+        footer {
+            background: #1a202c;
+            color: white;
+            padding: 3rem 2rem 2rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .contact-info {
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+
+        .footer-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-column a {
+            display: block;
+            color: #cbd5e0;
+            text-decoration: none;
+            margin-bottom: 0.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-column a:hover {
+            color: white;
+        }
+
+        /* RESPONSIVE DESIGN */
+        /* Desktop and Tablet - Show regular navigation */
+        @media (min-width: 769px) {
+            .hamburger {
+                display: none !important;
+            }
+            
+            .nav-buttons {
+                display: flex;
+            }
+            
+            .nav-links {
+                display: flex;
+                position: static;
+                background: transparent;
+                padding: 0;
+                transform: none;
+                opacity: 1;
+                visibility: visible;
+                flex-direction: row;
+                height: auto;
+                width: auto;
+                right: auto;
+            }
+        }
+
+        /* Mobile - Show hamburger menu */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex !important;
+            }
+
+            .nav-buttons {
+                display: none;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 100%;
+                height: 100vh;
+                background: rgba(0,0,0,0.95);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 2rem;
+                transition: right 0.3s ease;
+                z-index: 1000;
+            }
+
+            .nav-links.show {
+                right: 0;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.2rem;
+            }
+
+            .search-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .search-input {
+                min-width: auto;
+            }
+
+            .job-card {
+                flex: 0 0 280px;
+                padding: 1.5rem;
+            }
+
+            .jobs-track {
+                gap: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero {
+                padding: 2rem 1rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .job-card {
+                flex: 0 0 260px;
+                padding: 1.2rem;
+            }
+
+            .quick-buttons {
+                gap: 0.5rem;
+            }
+
+            .quick-btn {
+                padding: 0.6rem 1rem;
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+        <nav>
+            <div class="nav-left">
+                <div class="hamburger" onclick="toggleMenu()">
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                </div>
+                <img class="logo" src="/Images/Logo_2.png" alt="Job Portal Logo">
+            </div>
+            
+            <div class="nav-buttons">
+                <button class="btn">Jobseeker Login</button>
+                <button class="btn">Employer Login</button>
+            </div>
+            
+            <div id="navMenu" class="nav-links">
+                <a href="#jobs">Jobs</a>
+                <a href="#employers">Active Employers</a>
+                <a href="#blogs">Job Blogs</a>
+                <a href="#pricing">Pricing</a>
+            </div>
+        </nav>
+
+        <div class="hero">
+            <h1>Find Your Dream Job</h1>
+            <p>Ready to meet your perfect career opportunity!</p>
+            
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="Enter job title, keywords...">
+                <input type="text" class="search-input" placeholder="City or state">
+                <input type="text" class="search-input" placeholder="Experience level">
+                <input type="text" class="search-input" placeholder="Expected salary">
+                <button class="search-btn">Search Jobs →</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="separation"></div>
+
+    <section class="quick-search">
+        <h2>Quick Job Search</h2>
+        <div class="quick-buttons">
+            <a href="#" class="quick-btn">Fresher Jobs</a>
+            <a href="#" class="quick-btn">Work From Home</a>
+            <a href="#" class="quick-btn">Remote Jobs</a>
+            <a href="#" class="quick-btn">IT Jobs</a>
+            <a href="#" class="quick-btn">HR Jobs</a>
+            <a href="#" class="quick-btn">Back Office</a>
+            <a href="#" class="quick-btn">BPO Jobs</a>
+            <a href="#" class="quick-btn">ITES</a>
+            <a href="#" class="quick-btn">Finance</a>
+            <a href="#" class="quick-btn">Accounts</a>
+            <a href="#" class="quick-btn">Medical</a>
+            <a href="#" class="quick-btn">Pharma</a>
+            <a href="#" class="quick-btn">Manager</a>
+            <a href="#" class="quick-btn">Developer</a>
+            <a href="#" class="quick-btn">Marketing</a>
+            <a href="#" class="quick-btn">Engineering</a>
+            <a href="#" class="quick-btn">Government Jobs</a>
+        </div>
+    </section>
+
+    <div class="separation"></div>
+
+    <section class="featured-jobs">
+        <h2>Featured Jobs</h2>
+        <div class="jobs-container">
+            <div class="jobs-track" id="jobsTrack">
+                <div class="job-card">
+                    <div class="job-badge">Hot Job</div>
+                    <h3 class="job-title">Senior Software Developer</h3>
+                    <div class="company-name">TechCorp Solutions</div>
+                    <div class="job-details">
+                        <div class="job-detail">
+                            <span>⏰</span>
+                            <span>Full Time - Permanent</span>
+                        </div>
+                        <div class="job-detail">
+                            <span>💼</span>
+                            <span>3 - 5 Years Experience</span>
+                        </div>
+                        <div class="job-detail">
+                            <span>📍</span>
+                            <span>Bangalore, Karnataka</span>
+                        </div>
+                        <div class="job-detail">
+                            <span>💰</span>
+                            <span>₹8 - 15 LPA</span>
+                        </div>
+                    </div>
+                    <button class="apply-btn">Apply Now →</button>
+                </div>
+
+                <div class="job-card">
+                    <div class="job-badge">Remote</div>
+                    <h3 class="job-title">Digital Marketing Manager</h3>
+                    <div class="company-name">Creative Agency Pro</div>
+                    <div class="job-details">
+                        <div class="job-detail">
+                            <span>⏰</span>
+                            <span>Full Time - Remote</span>
+                        </div>
+                        <div class="job-detail">
+                            <span>💼</span>
+                            <span>2 - 4 Years Experience</span>
+                        </div>
+                        <div class="job-detail">
+                            <span>📍</span>
+                            <span>Work From Home</span>
+                        </div>
+                        <div class="job-detail">
+                            <span>💰</span>
+                            <span>₹6 - 12 LPA</span>
+                        </div>
+                    </div>
+                    <button class="apply-btn">Apply Now →</button>
+                </div>
+
+                <div class="job-card">
+                    <div class="job-badge">Urgent</div>
+                    <h3 class="job-title">HR Business Partner</h3>
+                    <div class="company-name">Global Enterprises Ltd</div>
+                    <div class="job-details">
+                        <div class="job-detail">
+                            <span>⏰</span>
+                            <span>Full Time - Permanent</span>
+                        </div>
+                        <div class="job-detail">
+                            <span>💼</span>
+                            <span>4 - 7 Years Experience</span>
+                        </div>
+                        <div class="job-detail">
+                            <span>📍</span>
+                            <span>Mumbai, Maharashtra</span>
+                        </div>
+                        <div class="job-detail">
+                            <span>💰</span>
+                            <span>₹10 - 18 LPA</span>
+                        </div>
+                    </div>
+                    <button class="apply-btn">Apply Now →</button>
+                </div>
+
+                <div class="job-card">
+                    <div class="job-badge">Hybrid</div>
+                    <h3 class="job-title">UX/UI Designer</h3>
+                    <div class="company-name">Design Studio Inc</div>
+                    <div class="job-details">
+                        <div class="job-detail">
+                            <span>⏰</span>
+                            <span>Full Time - Hybrid</span>
+                        </div>
+                        <div class="job-detail">
+                            <span>💼</span>
+                            <span>1 - 3 Years Experience</span>
+                        </div>
+                        <div class="job-detail">
+                            <span>📍</span>
+                            <span>Pune, Maharashtra</span>
+                        </div>
+                        <div class="job-detail">
+                            <span>💰</span>
+                            <span>₹5 - 10 LPA</span>
+                        </div>
+                    </div>
+                    <button class="apply-btn">Apply Now →</button>
+                </div>
+
+                <div class="job-card">
+                    <div class="job-badge">Fresher</div>
+                    <h3 class="job-title">Data Analyst Trainee</h3>
+                    <div class="company-name">Analytics Hub</div>
+                    <div class="job-details">
+                        <div class="job-detail">
+                            <span>⏰</span>
+                            <span>Full Time - Training</span>
+                        </div>
+                        <div class="job-detail">
+                            <span>💼</span>
+                            <span>0 - 1 Years Experience</span>
+                        </div>
+                        <div class="job-detail">
+                            <span>📍</span>
+                            <span>Hyderabad, Telangana</span>
+                        </div>
+                        <div class="job-detail">
+                            <span>💰</span>
+                            <span>₹3 - 6 LPA</span>
+                        </div>
+                    </div>
+                    <button class="apply-btn">Apply Now →</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="separation"></div>
+
+    <section class="faq">
+        <h2>Frequently Asked Questions</h2>
+        <div class="faq-container">
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>How do I search for jobs on your platform?</span>
+                    <svg class="faq-icon" fill="white" viewBox="0 0 24 24">
+                        <path d="M12 4V20M4 12H20" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Is registration free for job seekers?</span>
+                    <svg class="faq-icon" fill="white" viewBox="0 0 24 24">
+                        <path d="M12 4V20M4 12H20" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>How can employers post job openings?</span>
+                    <svg class="faq-icon" fill="white" viewBox="0 0 24 24">
+                        <path d="M12 4V20M4 12H20" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>What types of jobs are available?</span>
+                    <svg class="faq-icon" fill="white" viewBox="0 0 24 24">
+                        <path d="M12 4V20M4 12H20" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="separation"></div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="contact-info">
+                Questions? Call +91-800-123-4567
+            </div>
+            <div class="footer-links">
+                <div class="footer-column">
+                    <a href="#">About Us</a>
+                    <a href="#">Careers</a>
+                    <a href="#">Contact</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+                <div class="footer-column">
+                    <a href="#">Help Center</a>
+                    <a href="#">Job Alerts</a>
+                    <a href="#">Resume Builder</a>
+                    <a href="#">Privacy Policy</a>
+                </div>
+                <div class="footer-column">
+                    <a href="#">For Employers</a>
+                    <a href="#">Post Jobs</a>
+                    <a href="#">Pricing</a>
+                    <a href="#">Resources</a>
+                </div>
+                <div class="footer-column">
+                    <a href="#">Mobile App</a>
+                    <a href="#">Blog</a>
+                    <a href="#">Success Stories</a>
+                    <a href="#">Press</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Auto-scrolling job carousel
+        const jobsTrack = document.getElementById('jobsTrack');
+        const cardWidth = 370; // card width + gap
+        let scrollPosition = 0;
+        let isScrolling = true;
+
+        function autoScroll() {
+            if (!isScrolling) return;
+            
+            scrollPosition += cardWidth;
+            if (scrollPosition >= jobsTrack.scrollWidth - jobsTrack.parentElement.clientWidth) {
+                scrollPosition = 0;
+            }
+            jobsTrack.style.transform = `translateX(-${scrollPosition}px)`;
+        }
+
+        // Auto-scroll every 4 seconds
+        setInterval(autoScroll, 4000);
+
+        // Pause auto-scroll on hover
+        jobsTrack.addEventListener('mouseenter', () => isScrolling = false);
+        jobsTrack.addEventListener('mouseleave', () => isScrolling = true);
+
+        // Mobile menu toggle
+        function toggleMenu() {
+            const navMenu = document.getElementById("navMenu");
+            const hamburger = document.querySelector(".hamburger");
+            
+            navMenu.classList.toggle("show");
+            hamburger.classList.toggle("active");
+        }
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById("navMenu").classList.remove("show");
+                document.querySelector(".hamburger").classList.remove("active");
+            });
+        });
+
+        // Search functionality placeholder
+        document.querySelector('.search-btn').addEventListener('click', function() {
+            alert('Search functionality would be implemented here!');
+        });
+
+        // Apply button functionality
+        document.querySelectorAll('.apply-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                alert('Application process would be implemented here!');
+            });
+        });
+    </script>
+</body>
+</html>
