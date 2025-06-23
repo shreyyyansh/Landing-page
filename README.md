@@ -1,0 +1,1 @@
+Designed and developed a responsive job card carousel using HTML, CSS, and JavaScript. The carousel includes auto-sliding functionality, interactive card design, and mobile responsiveness—ensuring smooth and dynamic user experience across devices.
